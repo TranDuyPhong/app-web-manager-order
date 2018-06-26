@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+$height-header: 2.5em;
+$height-footer: 2.5em;
+
+$color-blue: rgb(68, 108, 179);
+$color-yellow: rgb(244, 208, 63);
+$color-gray: rgb(210, 215, 211);
+$color-red: rgb(240, 52, 52);
+
+$box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+
+$border-radius: 5px;
+
+body, html {
+    min-width: 1366px;
+    height: 100vh;
+    overflow: hidden;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a, span, h3, p {
+    font-family: Tahoma;
+}
+
+div.wr {
+    header.wr-header {
+        min-width: 1366px;
+        height: $height-header;
+        background-color: rgb(255, 255, 255);
+        box-shadow: $box-shadow;
+        div.wr-content-header {
+            float: left;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        div.wr-logo-app, div.wr-account {
+            width: 10%;
+        }
+        div.wr-logo-app {
+            h3 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                user-select: none;
+                font-weight: normal;
+                img {
+                    border-radius: $border-radius;
+                }
+                span {
+                    margin-left: 0.3em;
+                    margin-top: 0.1em;
+                    color: $color-yellow;
+                    font-size: 20px;
+                }
+            }
+        }
+        div.wr-menu {
+            width: 80%;
+            nav {
+                ul {
+                    li {
+                        float: left;
+                        margin: 0 1em;
+                        user-select: none;
+                        a {
+                            font-size: 15px;
+                            color: $color-blue;  
+                            transition: color 0.2s ease-out;
+                            &:hover {
+                                color: $color-yellow;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        div.wr-account {
+            button {
+                background: none;
+                border: none;
+                position: relative;
+                outline: none;
+                height: 100%;
+                cursor: pointer;
+                &:hover {
+                    ul {
+                        display: block;
+                        animation: (ani-show-account 0.2s ease-out forwards);
+                    }
+                }
+                & > i {
+                    color: $color-blue;
+                    font-size: 15px;
+                }
+                ul {
+                    display: none;
+                    z-index: 1000;
+                    position: absolute;
+                    left: -4.25em;
+                    top: 2.5em;
+                    width: 9.5em;
+                    background-color: rgb(255, 255, 255);
+                    border-radius: $border-radius;
+                    box-shadow: $box-shadow;
+                    li {
+                        line-height: 2.5em;
+                        border-bottom: 1px solid rgba(68, 108, 179, 0.2);
+                        user-select: none;
+                        &:nth-last-child(1) {
+                            border-bottom: none;
+                        }
+                        a {
+                            display: block;
+                            color: $color-blue;
+                            font-size: 15px;
+                            transition: color 0.2s ease-out;
+                            &:hover {
+                                color: $color-yellow;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    section.wr-main {
+        padding: 1em;
+        box-sizing: border-box;
+        min-width: 1366px;
+        height: 100vh - 6vh;
+        div.wr-filter-bill {
+            width: 100%;
+            height: 2.2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            p, input {
+                display: inline-block;
+            }
+            p {
+                color: $color-yellow;
+                font-size: 15px;
+                margin: 0 1.5em;
+            }
+            input, select {
+                font-size: 15px;
+                color: $color-blue;
+                border: none;
+                border-bottom: 1px solid $color-yellow;
+                padding: 0.4em 0.5em;
+                outline: none;
+                width: 12em;
+            }
+        }
+        div.wr-list-bill {
+            margin-top: 1em;
+            ul.wr-list-bill-header, ul.wr-list-bill-content {
+                width: 100%;
+                display: inline-block;
+                li {
+                    float: left;
+                    span {
+                        font-size: 15px;
+                        color: $color-blue;
+                    }
+                }
+            }
+            ul.wr-list-bill-header {
+                margin-bottom: 0.5em;
+                li {
+                    width: (100% / 8);
+                }
+            }
+            ul.wr-list-bill-content {
+                overflow-y: scroll;
+                height: 29.2em;
+                li {
+                    width: 100%;
+                    margin-bottom: 0.5em;
+                    span {
+                        display: inline-block;
+                        width: (100% / 8);
+                    }
+                }
+            }
+        }
+    }
+    footer.wr-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: $height-footer;
+        min-width: 1366px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+            margin: 0 1em;
+            font-size: 15px;
+            color: $color-blue;
+        }
+        p.wr-design-by {
+            color: $color-red;
+        }
+    }
+}
+
+.wr-list-bill-content::-webkit-scrollbar { 
+    display: none; 
+}
+
+@keyframes ani-show-list-filter-price {
+    from {
+        opacity: 0;
+        transform: translateY(-0.3em);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ani-show-account {
+    from {
+        opacity: 0;
+        transform: translateY(-0.3em);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

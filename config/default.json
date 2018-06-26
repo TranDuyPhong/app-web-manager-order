@@ -1,0 +1,11 @@
+{
+    "template": {
+        "name": "ejs"
+    },
+    "server": {
+        "port": 3000
+    },
+    "db": {
+        "path": "mongodb://localhost:27017/"
+    }
+}

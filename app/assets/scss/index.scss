@@ -1,0 +1,618 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+$height-header: 2.5em;
+$height-footer: 2.5em;
+
+$color-blue: rgb(68, 108, 179);
+$color-yellow: rgb(244, 208, 63);
+$color-gray: rgb(210, 215, 211);
+$color-red: rgb(240, 52, 52);
+
+$box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+
+$border-radius: 5px;
+
+body, html {
+    min-width: 1366px;
+    height: 100vh;
+    overflow: hidden;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a, span, h3, p {
+    font-family: Tahoma;
+}
+
+div.wr {
+    position: relative;
+    div.wr-container-change-password , div.wr-container-order-table, div.wr-container-order {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.6s ease-out;
+        &.toggle-show-form-change-password {
+            visibility: visible;
+            opacity: 1;
+            div.wr-change-password {
+                opacity: 1;
+            }
+        }
+        &.toggle-show-form-order-table {
+            visibility: visible;
+            opacity: 1;
+            div.wr-order-table {
+                opacity: 1;
+            }
+        }
+        &.toggle-show-order {
+            visibility: visible;
+            opacity: 1;
+            div.wr-order {
+                opacity: 1;
+            }
+        }
+        a.close-container-change-password, a.close-container-order-table, a.close-container-order {
+            position: absolute;
+            top: 0.2em;
+            right: 0.5em;
+            color: $color-red;
+        }
+        div.wr-change-password, div.wr-order-table, div.wr-order {
+            opacity: 0;
+            width: 23em;
+            height: 20em;
+            border-radius: $border-radius;
+            box-shadow: $box-shadow;
+            background-color: rgb(255, 255, 255);
+            padding: 1em;
+            box-sizing: border-box;
+            transition: all 0.6s ease-out;
+            position: relative;
+            &.wr-order-table {
+                height: 27em;
+            }
+            &.wr-order {
+                width: 60em;
+                height: 38.6em;
+                span.total-price-order-food {
+                    color: $color-red;
+                }
+            }
+            div.wr-filter {
+                margin-top: 0.5em;
+                display: grid;
+                height: 2em;
+                grid-template: 2em 2em 2em / 18.5em 18.5em 18.5em;
+                grid-column-gap: 1.25em;
+                &-categories, &-price, &-type-food {
+                    select {
+                        border-radius: $border-radius;
+                        border: 1px solid $color-blue;
+                        width: 100%;
+                        height: 100%;
+                        padding-left: 0.75em;
+                        outline: none;
+                        color: $color-blue;
+                    }
+                    label, select {
+                        font-family: Tahoma;
+                        font-size: 14px;
+                    }
+                }
+                &-type-food {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    label {
+                        user-select: none;
+                        color: $color-blue;
+                        margin: 0 0.3em;
+                    }
+                    input[type="radio"] {
+                        margin-right: 2em;
+                        outline: none;
+                    }
+                }   
+            }
+            div.wr-order-food {
+                margin-top: 0.5em;
+                height: 20.5em;
+                display: grid;
+                grid-template: 20.5em 20.5em / 38.5em 18.5em;
+                grid-column-gap: 1em;
+                &-for-table, &-list {
+                    overflow-y: scroll;
+                }
+                &-for-table {
+                    span {
+                        width: (95% / 6);
+                        a {
+                            color: $color-yellow;
+                        }
+                    }
+                }
+                &-list {
+                    span {
+                        width: (95% / 3);
+                    }
+                }
+                span {
+                    user-select: none;
+                    margin-right: 0.38em;
+                    font-family: Tahoma;
+                    font-size: 14px;
+                    color: $color-blue;
+                    display: inline-block;
+                    height: 100%;
+                    word-wrap: break-word;
+                    &:nth-last-child(1) {
+                        margin-right: 0;
+                    }
+                }
+                div.wr-item-food-for-table-header, div.wr-item-food-list-header {
+                    height: 1.5em;
+                    margin-bottom: 0.5em;
+                    span {
+                        line-height: 1.5em;
+                    }
+                }
+                div.wr-item-food-list, div.wr-item-food-for-table {
+                    cursor: pointer;
+                    margin-top: 0.3em;
+                    border-radius: $border-radius;
+                    padding: 0.1em 0;
+                    transition: background 0.3s ease-out;
+                    &:hover {
+                        background-color: $color-gray;
+                    }
+                    span {
+                        vertical-align: top;
+                        &.wr-img-food img {
+                            width: 100%;
+                            height: 4.5em;
+                        }
+                        &.wr-remove-food {
+                            text-align: center;
+                            line-height: 4.5em;
+                        }
+                    }
+                }
+            }
+            div.wr-all-button {
+                margin-top: 0.5em;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                button {
+                    margin: 0;
+                }
+            }
+            h3 {
+                color: $color-blue;
+                user-select: none;
+                text-align: center;
+                margin-bottom: 0.5em;
+            }
+            p {
+                font-size: 15px;
+                color: $color-blue;
+                margin: 0.5em 0;
+                user-select: none;
+                position: relative;
+                &.input-active {
+                    &::after {
+                        animation: (ani-input-active 0.6s ease-out forwards);
+                    }
+                }
+                &::after {
+                    content: '';
+                    width: 0%;
+                    height: 1px;
+                    position: absolute;
+                    background-color: $color-yellow;
+                    left: 0;
+                    bottom: -2.13em;
+                }
+            }
+            input[type="password"], input[type="text"], input[type="number"], input[type="time"] {
+                font-family: Tahoma;
+                color: rgb(0, 0, 0);
+                border: none;
+                outline: none;
+                width: 100%;
+                border-bottom: 1px solid $color-blue;
+                padding-left: 0.5em;
+                padding-bottom: 0.5em;
+                padding-right: 0.5em;
+                box-sizing: border-box;
+                font-size: 13px;
+            }
+            input.change-password, input.order-table, button.remove-all-food, button.order-all-food, button.order {
+                border: none;
+                outline: none;
+                display: block;
+                width: 10em;
+                height: 2.5em;
+                text-align: center;
+                line-height: 2.5em;
+                box-shadow: $box-shadow;
+                border-radius: $border-radius;
+                background-color: $color-yellow;
+                font-family: Tahoma;
+                font-size: 15px;
+                color: $color-blue;
+                margin: 1em auto;
+                cursor: pointer;
+                user-select: none;
+                transition: transform 0.2s ease-out;
+                &:hover {
+                    transform: translateY(-0.3em);
+                }
+            }
+            p.message-change-password, p.message-order-table {
+                color: $color-red;
+                user-select: auto;
+                font-style: italic;
+                &::after {
+                    content: none;
+                }
+            }
+        }
+    }
+    header.wr-header {
+        min-width: 1366px;
+        height: $height-header;
+        background-color: rgb(255, 255, 255);
+        box-shadow: $box-shadow;
+        div.wr-content-header {
+            float: left;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        div.wr-logo-app, div.wr-account {
+            width: 10%;
+        }
+        div.wr-logo-app {
+            h3 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                user-select: none;
+                font-weight: normal;
+                img {
+                    border-radius: $border-radius;
+                }
+                span {
+                    margin-left: 0.3em;
+                    margin-top: 0.1em;
+                    color: $color-yellow;
+                    font-size: 20px;
+                }
+            }
+        }
+        div.wr-menu {
+            width: 80%;
+            nav {
+                ul {
+                    li {
+                        float: left;
+                        margin: 0 1em;
+                        user-select: none;
+                        a {
+                            font-size: 15px;
+                            color: $color-blue;  
+                            transition: color 0.2s ease-out;
+                            &:hover {
+                                color: $color-yellow;
+                            }
+                            span {
+                                margin-left: 0.3em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        div.wr-account {
+            button {
+                background: none;
+                border: none;
+                position: relative;
+                outline: none;
+                height: 100%;
+                cursor: pointer;
+                &:hover {
+                    ul {
+                        display: block;
+                        animation: (ani-show-account 0.2s ease-out forwards);
+                    }
+                }
+                & > i {
+                    color: $color-blue;
+                    font-size: 15px;
+                }
+                ul {
+                    display: none;
+                    z-index: 1000;
+                    position: absolute;
+                    left: -4.25em;
+                    top: 2.5em;
+                    width: 9.5em;
+                    background-color: rgb(255, 255, 255);
+                    border-radius: $border-radius;
+                    box-shadow: $box-shadow;
+                    li {
+                        line-height: 2.5em;
+                        border-bottom: 1px solid rgba(68, 108, 179, 0.2);
+                        user-select: none;
+                        &:nth-last-child(1) {
+                            border-bottom: none;
+                        }
+                        a {
+                            display: block;
+                            color: $color-blue;
+                            font-size: 15px;
+                            transition: color 0.2s ease-out;
+                            &:hover {
+                                color: $color-yellow;
+                            }
+                            span {
+                                margin-left: 0.3em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    section.wr-main {
+        padding: 1em;
+        box-sizing: border-box;
+        min-width: 1366px;
+        height: 100vh - 6vh;
+        div.wr-table, div.wr-manipulation-table {
+            float: left;
+            width: 50%;
+            overflow: scroll;
+            box-sizing: content-box;
+            height: 100%;
+        }
+        div.wr-table {
+            height: 100%;
+            display: grid;
+            grid-template: 6em 6em 6em 6em 6em / 6em 6em 6em 6em 6em;
+            grid-gap: 2.5em;
+            div.table {
+                width: 6em;
+                height: 6em;
+                background-color: rgb(255, 255, 255); 
+                border-radius: $border-radius;
+                box-shadow: $box-shadow;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                cursor: pointer;
+                transition: all 0.2s ease-out;
+                &:hover {
+                    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.3);
+                }
+                &.table-active {
+                    background-color: $color-yellow;
+                }
+                &.table-wait {
+                    background-color: $color-gray;
+                }
+                p {
+                    user-select: none;
+                    margin: 0.3em 0;
+                    color: $color-blue;
+                    font-size: 15px;
+                }
+                p.countPeople {
+                    color: $color-red;
+                }
+            }
+        }
+        div.wr-manipulation-table {
+            div.wr-list-food, div.wr-info-order {
+                height: 50%;
+                p, span, a {
+                    font-size: 15px;
+                    color: $color-blue;
+                }
+                p.title {
+                    color: $color-yellow;
+                    user-select: none;
+                }
+            }
+            div.wr-list-food {
+                position: relative;
+                & > ul {
+                    width: 100%;
+                    height: 1.5em;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    li {
+                        user-select: none;
+                        width: 16.66666666666667%;
+                    }
+                }
+                div.wr-list {
+                    height: 78%;
+                    overflow: scroll;
+                    ul {
+                        li {
+                            clear: both;
+                            display: inline-block;
+                            width: 100%;
+                            cursor: pointer;
+                            z-index: 9999;
+                            margin-top: 0.3em;
+                            p {
+                                float: left;
+                                width: 16.66666666666667%;
+                                a {
+                                    color: $color-yellow;
+                                }
+                                a.increment, a.decrement {
+                                    margin-left: 0.75em;
+                                }
+                            }
+                        }
+                    }
+                }
+                div.wr-info-food {
+                    width: 100%;
+                    height: 1.5em;
+                    p {
+                        float: left;
+                        margin-right: 2em;
+                        line-height: 1.5em;
+                    }
+                }
+                div.wr-trash {
+                    right: 0;
+                    bottom: 1.5em;
+                    position: absolute;
+                    width: 3em;
+                    height: 3em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    user-select: none;
+                    button.remove-food-all {
+                        border: none;
+                        background: none;
+                        outline: none;
+                        cursor: pointer;
+                        transition: all 0.2s ease-out;
+                        &:hover {
+                            transform: translateY(-0.2em);
+                        }
+                    }
+                }
+            }
+            div.wr-info-order {
+                h3.table-name {
+                    margin-top: 0.1em;
+                    color: $color-yellow;
+                }
+                ul {
+                    li {
+                        margin: 0.64em 0;
+                    }
+                }
+                div.wr-manipulation-order {
+                    width: 100%;
+                    height: 2.5em;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    a {
+                        width: 8.5em;
+                        height: 2.5em;
+                        border-radius: $border-radius;
+                        box-shadow: $box-shadow;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: rgb(255, 255, 255);
+                        transition: all 0.2s ease-out;
+                        &:hover {
+                            transform: translateY(-0.2em);
+                        }
+                        span {
+                            margin-left: 0.5em;
+                            color: rgb(255, 255, 255);
+                        }
+                    }
+                    a.payment, a.order {
+                        background-color: $color-yellow;
+                    }
+                    a.order-table {
+                        background-color: $color-blue;
+                    }
+                    a.remove-bill, a.remove-order-table {
+                        background-color: $color-red;
+                    }
+                }
+            }
+        }
+    }
+    footer.wr-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: $height-footer;
+        min-width: 1366px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+            margin: 0 1em;
+            font-size: 15px;
+            color: $color-blue;
+        }
+        p.wr-design-by {
+            color: $color-red;
+        }
+    }
+}
+
+.wr-table::-webkit-scrollbar { 
+    display: none; 
+}
+
+.wr-manipulation-table::-webkit-scrollbar { 
+    display: none; 
+}
+
+.wr-list::-webkit-scrollbar { 
+    display: none; 
+}
+
+@keyframes ani-show-account {
+    from {
+        opacity: 0;
+        transform: translateY(-0.3em);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ani-input-active {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
