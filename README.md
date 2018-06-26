@@ -11,16 +11,15 @@ Sau khi tải tất cả những gì yêu cầu, bạn tiến hành cài đặt 
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
 
 # Tạo dữ liệu mẫu để test
-Bạn có thể mở project bằng trình soạn thảo Visual Studio Code hoặc Sublime Text, có thể tải 2 trình soản thạo này với link dưới
-- Visual Studio Code https://code.visualstudio.com/download
-- Sublime Text https://www.sublimetext.com/3
-
-# Sau khi tải trình soạn thảo xong, bạn tiến hành tải project bằng 2 cách sau
+Bạn tiến hành tải project bằng 2 cách sau
 - Sử dụng git command, bạn có thể tại git bằng link https://git-scm.com/downloads, sau khi tải và cài đặt xong, bạn ra ngoài màn hình desktop, chuột phải vào click vào Git Bash Here, git sẽ mở ra một command line,
 bạn copy https://github.com/TranDuyPhong/app-web-manager-order.git vào command line và ấn enter để git tiến hành clone project về
 - Tải file zip, vào link https://github.com/TranDuyPhong/app-web-manager-order/, tìm nút có chữ Clone or Download, click vào bạn sẽ thấy chữ Download ZIP và tiến hành tải file zip
 
-# Tạo dữ liệu mẫu để test
+Bạn có thể mở project bằng trình soạn thảo Visual Studio Code hoặc Sublime Text, có thể tải 2 trình soản thạo này với link dưới
+- Visual Studio Code https://code.visualstudio.com/download
+- Sublime Text https://www.sublimetext.com/3
+
 Bạn cần tiến hành đúng theo từng bước sau
 1. Đầu tiên bạn cần mở command line, nếu bạn đã tải git command thì chỉ cần chuột phải vào thư mục chứa project, nếu dùng command của window thì bạn mở command của window lên 
 và copy đường dẫn chứa project và dán vào command window và ấn enter
